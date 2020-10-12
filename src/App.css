@@ -1,0 +1,49 @@
+.Game {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Grid {
+  display: grid;
+  grid-template-columns: 100px 100px;
+  grid-template-rows: 100px 100px;
+}
+
+.Square {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Square-Red {
+  background-color: #e53e3e;
+}
+
+.Square-Red-Highlight {
+  background-color: #feb2b2;
+}
+
+.Square-Blue {
+  background-color: #3182ce;
+}
+
+.Square-Blue-Highlight {
+  background-color: #bee3f8;
+}
+
+.Square-Yellow {
+  background-color: #d69e2e;
+}
+
+.Square-Yellow-Highlight {
+  background-color: #fefcbf;
+}
+
+.Square-Green {
+  background-color: #38a169;
+}
+
+.Square-Green-Highlight {
+  background-color: #9ae6b4;
+}
