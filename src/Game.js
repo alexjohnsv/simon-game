@@ -27,6 +27,7 @@ class Game extends React.Component {
       sequencePlaying: false,
       highlightColor: '',
       playerSequence: [],
+      playing: false,
     }
   }
 
@@ -89,11 +90,19 @@ class Game extends React.Component {
 
   }
 
+  play() {
+    this.setState({
+      playing: true
+    });
+
+    setTimeout(() => { this.playSequence() }, 500);
+  }
+
   render() {
     return (
       <div className="Game">
 
-        <div onClick={() => this.playSequence()}>Play sequence</div>
+        { !this.state.playing && <div onClick={() => this.play()}>Play</div> }
 
         <div className="Grid">
           <Square handleClick={() => this.handleClick('Red')} highlight={this.state.highlightColor === 'Red'} color="Red" />
