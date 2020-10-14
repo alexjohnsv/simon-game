@@ -73,7 +73,6 @@ class Game extends React.Component {
     playerSequence.push(color);
 
     if (playerSequence.length === sequence.length) {
-      console.log(playerSequence, sequence);
       if (playerSequence.toString() !== sequence.toString()) {
         alert('You lost!');
         return;
