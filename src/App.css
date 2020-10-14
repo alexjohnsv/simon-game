@@ -39,6 +39,10 @@
   position: absolute;
 }
 
+.Square:active {
+  transform: scale(1.05);
+}
+
 .Square-Red {
   background-color: #e53e3e;
   left: 0;
@@ -48,6 +52,7 @@
 
 .Square-Red-Highlight {
   background-color: #feb2b2;
+  transform: scale(1.05);
 }
 
 .Square-Blue {
@@ -59,6 +64,7 @@
 
 .Square-Blue-Highlight {
   background-color: #bee3f8;
+  transform: scale(1.05);
 }
 
 .Square-Yellow {
@@ -70,6 +76,7 @@
 
 .Square-Yellow-Highlight {
   background-color: #fefcbf;
+  transform: scale(1.05);
 }
 
 .Square-Green {
@@ -81,4 +88,5 @@
 
 .Square-Green-Highlight {
   background-color: #9ae6b4;
+  transform: scale(1.05);
 }
