@@ -28,6 +28,7 @@ class Game extends React.Component {
       highlightColor: '',
       playerSequence: [],
       playing: false,
+      gameOver: false,
     }
   }
 
@@ -40,6 +41,11 @@ class Game extends React.Component {
   }
 
   playSequence() {
+    if (!this.state.sequencePlaying) {
+      this.setState({
+        sequencePlaying: true,
+      });
+    }
     const sequenceIndex = this.state.sequenceIndex;
     const sequence = this.state.sequence;
 
@@ -63,7 +69,7 @@ class Game extends React.Component {
   }
 
   handleClick(color) {
-    if (this.state.sequencePlaying || !this.state.playing) {
+    if (this.state.sequencePlaying || !this.state.playing || this.state.gameOver) {
       return;
     }
 
@@ -72,9 +78,17 @@ class Game extends React.Component {
 
     playerSequence.push(color);
 
+    this.setState({
+      playerSequence: [...playerSequence],
+    });
+
     if (playerSequence.length === sequence.length) {
       if (playerSequence.toString() !== sequence.toString()) {
-        alert('You lost!');
+        this.setState({
+          gameOver: true,
+          playing: false,
+        });
+
         return;
       }
 
@@ -96,13 +110,30 @@ class Game extends React.Component {
 
     this.setState({
       playing: true,
+      gameOver: false,
       sequence: [...randomColors(2)],
+      playerSequence: [],
+      sequencePlaying: true,
     });
 
     setTimeout(() => { this.playSequence() }, 500);
   }
 
   render() {
+    let message;
+
+    if (!this.state.sequencePlaying) {
+      message = 'Your turn';
+    }
+
+    if (!this.state.playing) {
+      message = 'Tap anywhere to play';
+    }
+
+    if (this.state.gameOver) {
+      message = 'Game Over';
+    }
+
     return (
       <div className="Game" onClick={() => this.play()}>
         <div className="Grid">
@@ -111,7 +142,7 @@ class Game extends React.Component {
           <Square handleClick={() => this.handleClick('Yellow')} highlight={this.state.highlightColor === 'Yellow'} color="Yellow" />
           <Square handleClick={() => this.handleClick('Green')} highlight={this.state.highlightColor === 'Green'} color="Green" />
           <div className="Grid-Middle">
-            { !this.state.playing && <span>Tap anywhere to play</span> }
+            { message && <span>{message}</span> }
           </div>
         </div>
       </div>
