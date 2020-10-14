@@ -29,6 +29,7 @@ class Game extends React.Component {
       playerSequence: [],
       playing: false,
       gameOver: false,
+      playerTurn: false,
     }
   }
 
@@ -63,6 +64,7 @@ class Game extends React.Component {
       this.setState({
         sequenceIndex: 0,
         sequencePlaying: false,
+        playerTurn: true,
       });
     }
     
@@ -95,6 +97,7 @@ class Game extends React.Component {
       this.setState({
         sequence: [...sequence, ...randomColors(2)],
         playerSequence: [],
+        playerTurn: false,
       });
 
       setTimeout(() => { this.playSequence() }, 2000);
@@ -122,7 +125,7 @@ class Game extends React.Component {
   render() {
     let message;
 
-    if (!this.state.sequencePlaying) {
+    if (this.state.playerTurn) {
       message = 'Your turn';
     }
 
