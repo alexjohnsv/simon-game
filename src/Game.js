@@ -117,6 +117,7 @@ class Game extends React.Component {
       sequence: [...randomColors(2)],
       playerSequence: [],
       sequencePlaying: true,
+      playerTurn: false,
     });
 
     setTimeout(() => { this.playSequence() }, 500);
@@ -130,21 +131,21 @@ class Game extends React.Component {
     }
 
     if (!this.state.playing) {
-      message = 'Tap anywhere to play';
+      message = 'Tap here to play';
     }
 
     if (this.state.gameOver) {
-      message = 'Game Over';
+      message = 'Game Over. Play again?';
     }
 
     return (
-      <div className="Game" onClick={() => this.play()}>
+      <div className="Game">
         <div className="Grid">
           <Square handleClick={() => this.handleClick('Red')} highlight={this.state.highlightColor === 'Red'} color="Red" />
           <Square handleClick={() => this.handleClick('Blue')} highlight={this.state.highlightColor === 'Blue'} color="Blue" />
           <Square handleClick={() => this.handleClick('Yellow')} highlight={this.state.highlightColor === 'Yellow'} color="Yellow" />
           <Square handleClick={() => this.handleClick('Green')} highlight={this.state.highlightColor === 'Green'} color="Green" />
-          <div className="Grid-Middle">
+          <div className="Grid-Middle" onClick={() => this.play()}>
             { message && <span>{message}</span> }
           </div>
         </div>
